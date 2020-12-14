@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+defaults:
+  run:
+    working-directory: client
+
+jobs: 
+  build:
+    runs-on: node:lts-alpine
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn
+      - name: Unit test
+        run: yarn test:unit
